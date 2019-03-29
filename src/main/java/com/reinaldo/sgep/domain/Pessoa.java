@@ -1,10 +1,9 @@
 package com.reinaldo.sgep.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +16,9 @@ public class Pessoa implements Serializable {
     private String nome;
     private Integer data_nascimento;
     private String email;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
 
     public Pessoa(){
     }
@@ -58,6 +60,14 @@ public class Pessoa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<ExperienciaProfissional> getExperienciasProfissionais() {
+        return experienciasProfissionais;
+    }
+
+    public void setExperienciasProfissionais(List<ExperienciaProfissional> experienciasProfissionais) {
+        this.experienciasProfissionais = experienciasProfissionais;
     }
 
     @Override

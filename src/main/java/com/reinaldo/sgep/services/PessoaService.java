@@ -11,10 +11,10 @@ import java.util.Optional;
 public class PessoaService {
 
     @Autowired
-    private PessoaRepository repo;
+    private PessoaRepository pessoaRepository;
 
     public Pessoa buscar(Integer id){
-        Optional<Pessoa> obj = repo.findById(id);
+        Optional<Pessoa> obj = pessoaRepository.findById(id);
         return obj.orElse(null);
     }
 }
