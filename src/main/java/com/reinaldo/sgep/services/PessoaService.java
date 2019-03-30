@@ -1,6 +1,7 @@
 package com.reinaldo.sgep.services;
 
 import com.reinaldo.sgep.domain.Pessoa;
+import com.reinaldo.sgep.dto.PessoaDTO;
 import com.reinaldo.sgep.repositories.PessoaRepository;
 import com.reinaldo.sgep.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,9 @@ public class PessoaService {
         return pessoaRepository.findAll(pageRequest);
     }
 
+
+    public Pessoa fromDTO(PessoaDTO objDto) {
+        return new Pessoa(objDto.getId(), objDto.getNome(), objDto.getData_nascimento(), objDto.getEmail());
+    }
 
 }

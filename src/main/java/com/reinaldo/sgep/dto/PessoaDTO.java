@@ -1,13 +1,20 @@
 package com.reinaldo.sgep.dto;
 
 import com.reinaldo.sgep.domain.Pessoa;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class PessoaDTO implements Serializable {
 
     private Integer id ;
+
+    @NotEmpty(message = "O nome é obrigatório")
+    @Length(min=4, max = 80, message = "O nome deve conter entre 4 e 80 caracteres")
     private String nome;
+
     private String data_nascimento;
     private String email;
 
