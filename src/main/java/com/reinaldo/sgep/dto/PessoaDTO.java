@@ -8,7 +8,7 @@ public class PessoaDTO implements Serializable {
 
     private Integer id ;
     private String nome;
-    private Integer data_nascimento;
+    private String data_nascimento;
     private String email;
 
     public PessoaDTO() {
@@ -37,11 +37,11 @@ public class PessoaDTO implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getData_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Integer data_nascimento) {
+    public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 

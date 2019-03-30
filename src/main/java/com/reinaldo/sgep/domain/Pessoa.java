@@ -14,7 +14,7 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
     private String nome;
-    private Integer data_nascimento;
+    private String data_nascimento;
     private String email;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
@@ -23,7 +23,7 @@ public class Pessoa implements Serializable {
     public Pessoa(){
     }
 
-    public Pessoa(Integer id, String nome, Integer data_nascimento, String email) {
+    public Pessoa(Integer id, String nome, String data_nascimento, String email) {
         this.id = id;
         this.nome = nome;
         this.data_nascimento = data_nascimento;
@@ -46,11 +46,11 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public Integer getData_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Integer data_nascimento) {
+    public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 

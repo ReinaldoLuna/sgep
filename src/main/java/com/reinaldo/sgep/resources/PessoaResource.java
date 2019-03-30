@@ -4,6 +4,7 @@ import com.reinaldo.sgep.domain.Pessoa;
 import com.reinaldo.sgep.dto.PessoaDTO;
 import com.reinaldo.sgep.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,11 +45,24 @@ public class PessoaResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<PessoaDTO>> findAll() {
         List<Pessoa> list = service.findAll();
         List<PessoaDTO> listDto = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
+
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public ResponseEntity<Page<PessoaDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") String page,
+                                                    @RequestParam(value = "linesPerPage", defaultValue = "4") Integer linesPerPage,
+                                                    @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+                                                    @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy) {
+        Integer pageInteger = Integer.valueOf(page);
+
+        Page<Pessoa> list = service.findPage(pageInteger,linesPerPage, orderBy, direction);
+        Page<PessoaDTO> listDto = list.map(obj -> new PessoaDTO(obj));
+        return ResponseEntity.ok().body(listDto);
+    }
+
 }

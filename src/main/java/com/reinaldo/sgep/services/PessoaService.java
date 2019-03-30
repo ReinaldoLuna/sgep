@@ -4,6 +4,9 @@ import com.reinaldo.sgep.domain.Pessoa;
 import com.reinaldo.sgep.repositories.PessoaRepository;
 import com.reinaldo.sgep.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +44,11 @@ public class PessoaService {
         this.find(id);
         pessoaRepository.deleteById(id);
     }
+
+    public Page<Pessoa> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return pessoaRepository.findAll(pageRequest);
+    }
+
 
 }
