@@ -1,5 +1,7 @@
 package com.reinaldo.sgep.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class Pessoa implements Serializable {
     private Integer data_nascimento;
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<ExperienciaProfissional> experienciasProfissionais = new ArrayList<>();
 

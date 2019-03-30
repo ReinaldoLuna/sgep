@@ -1,11 +1,12 @@
 package com.reinaldo.sgep.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-
 public class ExperienciaProfissional implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -15,6 +16,7 @@ public class ExperienciaProfissional implements Serializable {
     private String empresa;
     private String atividades;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
