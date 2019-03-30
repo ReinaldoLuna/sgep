@@ -1,6 +1,7 @@
 package com.reinaldo.sgep.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class ExperienciaProfissional implements Serializable {
     private String empresa;
     private String atividades;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;

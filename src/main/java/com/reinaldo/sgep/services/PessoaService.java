@@ -21,4 +21,10 @@ public class PessoaService {
         + ", Tipo: " + Pessoa.class.getName()));
 
     }
+
+    public Pessoa insert(Pessoa obj){
+        obj.setId(null);
+        return pessoaRepository.save(obj);
+    }
+
 }
