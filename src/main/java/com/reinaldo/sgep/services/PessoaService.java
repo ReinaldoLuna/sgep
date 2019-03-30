@@ -6,6 +6,7 @@ import com.reinaldo.sgep.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,10 @@ public class PessoaService {
 
     }
 
+    public List<Pessoa> findAll() {
+        return pessoaRepository.findAll();
+    }
+
     public Pessoa insert(Pessoa obj) {
         obj.setId(null);
         return pessoaRepository.save(obj);
@@ -30,6 +35,11 @@ public class PessoaService {
     public Pessoa update(Pessoa obj) {
         this.find(obj.getId());
         return pessoaRepository.save(obj);
+    }
+
+    public void delete(Integer id) {
+        this.find(id);
+        pessoaRepository.deleteById(id);
     }
 
 }
