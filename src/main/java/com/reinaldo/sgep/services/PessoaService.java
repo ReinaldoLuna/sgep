@@ -14,16 +14,21 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public Pessoa find(Integer id){
+    public Pessoa find(Integer id) {
         Optional<Pessoa> obj = pessoaRepository.findById(id);
 
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-        + ", Tipo: " + Pessoa.class.getName()));
+                + ", Tipo: " + Pessoa.class.getName()));
 
     }
 
-    public Pessoa insert(Pessoa obj){
+    public Pessoa insert(Pessoa obj) {
         obj.setId(null);
+        return pessoaRepository.save(obj);
+    }
+
+    public Pessoa update(Pessoa obj) {
+        this.find(obj.getId());
         return pessoaRepository.save(obj);
     }
 
