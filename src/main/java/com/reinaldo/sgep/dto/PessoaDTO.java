@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.reinaldo.sgep.domain.Pessoa;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +20,9 @@ public class PessoaDTO implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date data_nascimento;
+
+    @NotEmpty(message = "Campo obrigatório")
+    @Pattern(regexp=".+@.+\\..+", message="Informe um email válido")
     private String email;
 
     public PessoaDTO() {

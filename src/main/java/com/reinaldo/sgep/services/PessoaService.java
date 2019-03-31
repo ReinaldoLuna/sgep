@@ -37,7 +37,8 @@ public class PessoaService {
     }
 
     public Pessoa update(Pessoa obj) {
-        this.find(obj.getId());
+        Pessoa newObj = this.find(obj.getId());
+        this.updateData(newObj, obj);
         return pessoaRepository.save(obj);
     }
 
@@ -54,6 +55,12 @@ public class PessoaService {
 
     public Pessoa fromDTO(PessoaDTO objDto) {
         return new Pessoa(objDto.getId(), objDto.getNome(), objDto.getData_nascimento(), objDto.getEmail());
+    }
+
+    private void updateData(Pessoa newObj, Pessoa obj) {
+        newObj.setNome(obj.getNome());
+        newObj.setData_nascimento(obj.getData_nascimento());
+        newObj.setEmail(obj.getEmail());
     }
 
 }
