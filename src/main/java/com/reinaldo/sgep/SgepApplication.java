@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 @SpringBootApplication
 public class SgepApplication implements CommandLineRunner {
@@ -27,14 +29,16 @@ public class SgepApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Pessoa p1 = new Pessoa(null, "Reinaldo", "25/08/1992", "lunajf18@gmail.com");
-        Pessoa p2 = new Pessoa(null, "Maria", "12/01/1990", "maria@gmail.com");
-        Pessoa p3 = new Pessoa(null, "Ana", "19/12/1999", "ana@gmail.com");
-        Pessoa p4 = new Pessoa(null, "Carlos", "29/05/1979", "carlos@gmail.com");
-        Pessoa p5 = new Pessoa(null, "Marcia", "21/07/2002", "marcia@gmail.com");
-        Pessoa p6 = new Pessoa(null, "Carolina", "01/03/1988", "carolina@gmail.com");
-        Pessoa p7 = new Pessoa(null, "André", "22/09/1995", "andre@gmail.com");
-        Pessoa p8 = new Pessoa(null, "Jorge", "07/02/1970", "jorge@gmail.com");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Pessoa p1 = new Pessoa(null, "Reinaldo", sdf.parse("25/08/1992"), "lunajf18@gmail.com");
+        Pessoa p2 = new Pessoa(null, "Maria", sdf.parse("12/01/1990"), "maria@gmail.com");
+        Pessoa p3 = new Pessoa(null, "Ana", sdf.parse("19/12/1999"), "ana@gmail.com");
+        Pessoa p4 = new Pessoa(null, "Carlos", sdf.parse("29/05/1979"), "carlos@gmail.com");
+        Pessoa p5 = new Pessoa(null, "Marcia", sdf.parse("21/07/2002"), "marcia@gmail.com");
+        Pessoa p6 = new Pessoa(null, "Carolina", sdf.parse("01/03/1988"), "carolina@gmail.com");
+        Pessoa p7 = new Pessoa(null, "André", sdf.parse("22/09/1995"), "andre@gmail.com");
+        Pessoa p8 = new Pessoa(null, "Jorge", sdf.parse("07/02/1970"), "jorge@gmail.com");
 
         ExperienciaProfissional e1 = new ExperienciaProfissional(null, "Bahamas", "Caixa", p1);
         ExperienciaProfissional e2 = new ExperienciaProfissional(null, "Almaviva", "Representante de atendimento", p2);

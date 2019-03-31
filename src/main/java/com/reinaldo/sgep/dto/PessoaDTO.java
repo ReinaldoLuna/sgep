@@ -1,11 +1,12 @@
 package com.reinaldo.sgep.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.reinaldo.sgep.domain.Pessoa;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Date;
 
 public class PessoaDTO implements Serializable {
 
@@ -15,7 +16,8 @@ public class PessoaDTO implements Serializable {
     @Length(min=4, max = 80, message = "O nome deve conter entre 4 e 80 caracteres")
     private String nome;
 
-    private String data_nascimento;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date data_nascimento;
     private String email;
 
     public PessoaDTO() {
@@ -44,11 +46,11 @@ public class PessoaDTO implements Serializable {
         this.nome = nome;
     }
 
-    public String getData_nascimento() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(String data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 

@@ -1,10 +1,10 @@
 package com.reinaldo.sgep.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -14,7 +14,9 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
     private String nome;
-    private String data_nascimento;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date data_nascimento;
     private String email;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
@@ -23,7 +25,7 @@ public class Pessoa implements Serializable {
     public Pessoa(){
     }
 
-    public Pessoa(Integer id, String nome, String data_nascimento, String email) {
+    public Pessoa(Integer id, String nome, Date data_nascimento, String email) {
         this.id = id;
         this.nome = nome;
         this.data_nascimento = data_nascimento;
@@ -46,11 +48,11 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getData_nascimento() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(String data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
