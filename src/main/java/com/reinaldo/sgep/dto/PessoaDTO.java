@@ -2,14 +2,15 @@ package com.reinaldo.sgep.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.reinaldo.sgep.domain.Pessoa;
+import com.reinaldo.sgep.services.validation.PessoaInsert;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 
+@PessoaInsert
 public class PessoaDTO implements Serializable {
 
     private Integer id ;

@@ -1,5 +1,6 @@
 package com.reinaldo.sgep.services;
 
+import com.reinaldo.sgep.domain.ExperienciaProfissional;
 import com.reinaldo.sgep.domain.Pessoa;
 import com.reinaldo.sgep.dto.PessoaDTO;
 import com.reinaldo.sgep.repositories.PessoaRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +33,7 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
+    @Transactional
     public Pessoa insert(Pessoa obj) {
         obj.setId(null);
         return pessoaRepository.save(obj);
