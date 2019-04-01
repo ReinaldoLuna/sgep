@@ -1,12 +1,9 @@
 package com.reinaldo.sgep.resources;
 
 import com.reinaldo.sgep.domain.ExperienciaProfissional;
-import com.reinaldo.sgep.domain.Pessoa;
 import com.reinaldo.sgep.dto.ExperienciaProfissionalDTO;
 import com.reinaldo.sgep.services.ExperienciaProfissionalService;
 import com.reinaldo.sgep.services.PessoaService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +47,7 @@ public class ExperienciaProfissionalResource {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();  
     }
 
 }
