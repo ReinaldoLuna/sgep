@@ -23,6 +23,7 @@ public class PessoaResource {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Pessoa> find(@PathVariable Integer id) {
+        System.out.println("TEste");
         Pessoa obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
