@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/pessoas")
+@CrossOrigin(origins = "*")
 public class PessoaResource {
 
     @Autowired

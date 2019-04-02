@@ -14,6 +14,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/experiancias_profissionais")
+@CrossOrigin(origins = "*")
 public class ExperienciaProfissionalResource {
 
     @Autowired
