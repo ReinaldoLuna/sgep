@@ -14,17 +14,19 @@ import java.util.Arrays;
 import java.util.Date;
 
 @SpringBootApplication
-public class SgepApplication implements CommandLineRunner {
+public class SgepApplication{
 
+    public static void main(String[] args) {
+        SpringApplication.run(SgepApplication.class, args);
+    }
+/*
     @Autowired
     private PessoaRepository categoriaRepository;
 
     @Autowired
     private ExperienciaProfissionalRepository experienciaProfissionalRepository;
 
-    public static void main(String[] args) {
-        SpringApplication.run(SgepApplication.class, args);
-    }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,5 +55,5 @@ public class SgepApplication implements CommandLineRunner {
 
         categoriaRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8));
         experienciaProfissionalRepository.saveAll(Arrays.asList(e1,e2,e3,e4,e5,e6,e7));
-    }
+    }*/
 }

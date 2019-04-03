@@ -1,5 +1,6 @@
 package com.reinaldo.sgep.resources;
 
+import com.reinaldo.sgep.domain.ExperienciaProfissional;
 import com.reinaldo.sgep.domain.Pessoa;
 import com.reinaldo.sgep.dto.PessoaDTO;
 import com.reinaldo.sgep.services.PessoaService;
@@ -24,21 +25,21 @@ public class PessoaResource {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Pessoa> find(@PathVariable Integer id) {
-        System.out.println("TEste");
         Pessoa obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@Valid @RequestBody PessoaDTO objDto) {
+    public ResponseEntity<Pessoa> insert(@Valid @RequestBody PessoaDTO objDto) {
         Pessoa obj = service.fromDTO(objDto);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        //return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update (@Valid @RequestBody PessoaDTO objDto, @PathVariable Integer id){
+    public ResponseEntity<Void> update(@Valid @RequestBody PessoaDTO objDto, @PathVariable Integer id) {
         Pessoa obj = service.fromDTO(objDto);
         obj.setId(id);
         obj = service.update(obj);
@@ -65,9 +66,8 @@ public class PessoaResource {
                                                     @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy) {
         Integer pageInteger = Integer.valueOf(page);
 
-        Page<Pessoa> list = service.findPage(pageInteger,linesPerPage, orderBy, direction);
+        Page<Pessoa> list = service.findPage(pageInteger, linesPerPage, orderBy, direction);
         Page<PessoaDTO> listDto = list.map(obj -> new PessoaDTO(obj));
         return ResponseEntity.ok().body(listDto);
     }
-
 }

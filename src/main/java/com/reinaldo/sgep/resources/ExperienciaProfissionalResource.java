@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/experiancias_profissionais")
+@RequestMapping(value = "/experiencias_profissionais")
 @CrossOrigin(origins = "*")
 public class ExperienciaProfissionalResource {
 
@@ -30,11 +30,12 @@ public class ExperienciaProfissionalResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@Valid @RequestBody ExperienciaProfissionalDTO objDto) {
+    public ResponseEntity<ExperienciaProfissional> insert(@Valid @RequestBody ExperienciaProfissionalDTO objDto) {
         ExperienciaProfissional obj = service.fromDTO(objDto);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        //return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
